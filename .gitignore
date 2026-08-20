@@ -1,5 +1,27 @@
+# Python virtual environment
 venv/
+.venv/
+
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Environment variables
 .env
+.env.*
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# IDE
 .vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+Thumbs.db
+.DS_Store
