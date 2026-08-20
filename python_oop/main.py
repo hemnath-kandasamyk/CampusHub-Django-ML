@@ -3,12 +3,13 @@ from campushub.department import Department
 from campushub.subject import Subject
 from campushub.marks import Mark
 from campushub.attendance import Attendance
-from campushub.prediction import Prediction
+from campushub.faculty import Faculty
+from campushub.admin import Admin
 
 
-# --------------------------------
-# 1. Create Department
-# --------------------------------
+# ==========================================
+# 1. CREATE DEPARTMENT
+# ==========================================
 
 department = Department(
     1,
@@ -17,9 +18,9 @@ department = Department(
 )
 
 
-# --------------------------------
-# 2. Create Student
-# --------------------------------
+# ==========================================
+# 2. CREATE STUDENT
+# ==========================================
 
 student = Student(
     101,
@@ -30,16 +31,16 @@ student = Student(
 )
 
 
-# --------------------------------
-# 3. Add Student to Department
-# --------------------------------
+# ==========================================
+# 3. ADD STUDENT TO DEPARTMENT
+# ==========================================
 
 department.add_student(student)
 
 
-# --------------------------------
-# 4. Create Subject
-# --------------------------------
+# ==========================================
+# 4. CREATE SUBJECT
+# ==========================================
 
 subject = Subject(
     101,
@@ -49,9 +50,9 @@ subject = Subject(
 )
 
 
-# --------------------------------
-# 5. Create Mark
-# --------------------------------
+# ==========================================
+# 5. CREATE MARK
+# ==========================================
 
 mark = Mark(
     student,
@@ -60,10 +61,13 @@ mark = Mark(
     40
 )
 
+# Composition
+student.add_mark(mark)
 
-# --------------------------------
-# 6. Create Attendance
-# --------------------------------
+
+# ==========================================
+# 6. CREATE ATTENDANCE
+# ==========================================
 
 attendance = Attendance(
     student,
@@ -72,17 +76,74 @@ attendance = Attendance(
     43
 )
 
+# Composition
+student.add_attendance(attendance)
 
-# --------------------------------
-# 7. Display
-# --------------------------------
+
+# ==========================================
+# 7. CREATE FACULTY
+# ==========================================
+
+faculty = Faculty(
+    201,
+    "Arun",
+    "arun@campushub.com",
+    "FAC001",
+    "AI&DS"
+)
+
+
+# ==========================================
+# 8. CREATE ADMIN
+# ==========================================
+
+admin = Admin(
+    301,
+    "CampusHub Admin",
+    "admin@campushub.com",
+    "SUPER_ADMIN"
+)
+
+
+# ==========================================
+# 9. STUDENT PROFILE
+# ==========================================
 
 student.display_profile()
 
+
+# ==========================================
+# 10. DEPARTMENT
+# ==========================================
+
 department.display_department()
+
+
+# ==========================================
+# 11. SUBJECT
+# ==========================================
 
 subject.display_subject()
 
-mark.display_marks()
 
-attendance.display_attendance()
+# ==========================================
+# 12. ACADEMIC RECORDS
+# ==========================================
+
+student.display_academic_records()
+
+
+# ==========================================
+# 13. POLYMORPHISM DEMO
+# ==========================================
+
+print("\n===== POLYMORPHISM DEMO =====")
+
+users = [
+    student,
+    faculty,
+    admin
+]
+
+for user in users:
+    user.display_profile()

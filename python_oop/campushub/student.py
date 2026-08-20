@@ -1,28 +1,72 @@
-class Student:
+from .user import User
 
-    def __init__(self, student_id, name, email, department, year):
-        self.student_id = student_id
-        self.name = name
-        self.email = email
+
+class Student(User):
+
+    def __init__(
+        self,
+        user_id,
+        name,
+        email,
+        department,
+        year
+    ):
+        # Initialize User
+        super().__init__(user_id, name, email)
+
         self.department = department
         self.__year = year
 
-    def get_year(self):
-        return self.__year
+        # Composition
+        self.marks = []
+        self.attendance_records = []
 
-    def promote(self):
+    # -----------------------------
+    # Add Mark
+    # -----------------------------
 
-        if self.__year >= 4:
-            print("Student has completed the final year.")
-            return
+    def add_mark(self, mark):
+        self.marks.append(mark)
 
-        self.__year += 1
-        print(f"{self.name} promoted to year {self.__year}")
+    # -----------------------------
+    # Add Attendance
+    # -----------------------------
+
+    def add_attendance(self, attendance):
+        self.attendance_records.append(attendance)
+
+    # -----------------------------
+    # Display Academic Records
+    # -----------------------------
+
+    def display_academic_records(self):
+
+        print("\n===== ACADEMIC RECORDS =====")
+
+        print("\n--- MARKS ---")
+
+        if not self.marks:
+            print("No marks available.")
+
+        for mark in self.marks:
+            mark.display_marks()
+
+        print("\n--- ATTENDANCE ---")
+
+        if not self.attendance_records:
+            print("No attendance records available.")
+
+        for attendance in self.attendance_records:
+            attendance.display_attendance()
+
+    # -----------------------------
+    # Display Student Profile
+    # -----------------------------
 
     def display_profile(self):
 
         print("\n===== STUDENT PROFILE =====")
-        print("ID         :", self.student_id)
+        print("ID         :", self.user_id)
         print("Name       :", self.name)
         print("Email      :", self.email)
         print("Department :", self.department)
